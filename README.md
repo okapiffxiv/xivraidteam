@@ -13,6 +13,35 @@
 1. 「ツール→スクリプトエディタ」をクリックし、開かれたスクリプトに必要なデータを入力  
   [DiscordのユーザIDの調べ方](https://qiita.com/Goryudyuma/items/2e5efd0a07173b060b34)  
   [Discord webhookの取得方法](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks)  
+```
+// GoogleカレンダーID
+schedule.calId = "????@gmail.com";
+
+// DiscordのユーザID "<@コピーしたID（ランダムな半角数字）>"
+// 予定表左の人から順番に入れる
+schedule.discordIds = [
+  "<@ここにIDを記入>",
+  "<@ここにIDを記入>",
+  "<@ここにIDを記入>", 
+  "<@ここにIDを記入>",
+  "<@ここにIDを記入>",
+  "<@ここにIDを記入>",
+  "<@ここにIDを記入>",
+  "<@ここにIDを記入>"
+];
+
+// Discord webhook url
+// カレンダーイベント用
+schedule.eventWebhook = "ここにURLを記入";
+// 来月の予定表を作成時や予定未記入者への連絡用
+schedule.bookWebhook = "ここにURLを記入";
+
+// Discordに送るメッセージ
+// 予定表未記入者連絡用
+schedule.blinkMessage = "予定表に記入してネ！";
+// 来月の予定表を作成時連絡用
+schedule.copyMessage = "来月の予定表を用意したゾ☆";
+```
 1. 「編集→すべてのトリガー」をクリック。「実行する関数を選択」に自動化したい処理を設定  
   カレンダーにイベントを登録： 実行日から来週までの予定をみて、全員入力かつチェックマークがついている予定をGoogleカレンダーに登録  
   未入力者にDiscordで連絡：実行日から来週のリセ日前日までの予定をみて、予定未入力者にDiscordで連絡  
