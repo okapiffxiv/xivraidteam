@@ -1,7 +1,12 @@
 # xivraidteam
 - 固定管理用スプレッドシートです　　
 - 希望品の確認、強化薬系の取得状況確認、スケジュール管理ができます  
-- またDiscordやGoogleカレンダーと連携をすることでスケジュール未記入者への連絡、固定活動日のスケジュール作成を自動化することもできます
+![Imgur](https://i.imgur.com/9kIoD9E.png)
+![Imgur](https://i.imgur.com/NwEkyTU.png)
+
+- またDiscordやGoogleカレンダーと連携をすることでスケジュール未記入者への連絡、固定活動日のスケジュール作成を自動化することもできます  
+![Imgur](https://i.imgur.com/9inwkvs.png) ![Imgur](https://i.imgur.com/frkUnmw.png)  
+![Imgur](https://i.imgur.com/NWnksCE.png) ![Imgur](https://i.imgur.com/Fvyc0BU.jpg)
 
 ### インストール
 1. [ここ](https://docs.google.com/spreadsheets/d/1Q5FFsnICgQLiwUqzaLrHTg1B_tGYZ04QsYjYEm9WPEQ/copy)をクリックして、自分のGoogleドライブにシートをコピー
@@ -47,4 +52,5 @@ schedule.copyMessage = "来月の予定表を用意したゾ☆";
   未入力者にDiscordで連絡：実行日から来週のリセ日前日までの予定をみて、予定未入力者にDiscordで連絡  
   来月の予定表を作成：来月の予定表シートを作成  
   今月の予定表を作成：今月の予定表シートを作成  
+![Imgur](https://i.imgur.com/L5NuLb3.png)
 1. 「イベントソースを選択」と「イベントの種類を選択」からそれぞれの処理を実行したいタイミングを選択し、保存ボタンを押す
