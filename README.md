@@ -11,6 +11,7 @@
 ### インストール
 1. [ここ](https://docs.google.com/spreadsheets/d/1Q5FFsnICgQLiwUqzaLrHTg1B_tGYZ04QsYjYEm9WPEQ/copy)をクリックして、自分のGoogleドライブにシートをコピー
 1. Googleにログインした状態で上のメニューから「管理 ＞ 今月の予定表」を作成をクリック
+1. 承認ダイアログが出てきた許可する（[参考記事](https://www.virment.com/step-allow-google-apps-script/)）
 1. 「ロット」シートの希望品表にメンバーの名前を記入
 1. 開始時刻欄を半角で記入。活動しない場合は空欄。
 
