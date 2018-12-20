@@ -12,7 +12,7 @@
 1. 開始時刻欄を半角で記入。活動しない場合は空欄。
 
 ### Google Calendar、Discordとの連携
-- この処理をしておくと、Discordを使って未記入者への連絡、固定活動日のお知らせを自動で行ってくれるようになります
+- この処理を行っておくと、Discordを使って未記入者への連絡、固定活動日のお知らせを自動で行ってくれるようになります
 - Googleカレンダーに固定日を自動登録してくれるので、カレンダーURLから固定日の情報を共有することが出来ます  
 ![Imgur](https://i.imgur.com/9inwkvs.png) ![Imgur](https://i.imgur.com/frkUnmw.png)  
 ![Imgur](https://i.imgur.com/NWnksCE.png) ![Imgur](https://i.imgur.com/Fvyc0BU.jpg)
