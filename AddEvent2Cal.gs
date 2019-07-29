@@ -25,6 +25,7 @@ AddEvent2Cal.prototype.createEvent = function (targetDay) {
   var row = headerRows + targetDay.getDate();
   var eventCell = sheet.getRange(CALID_COL + row).getValue();
   var startTime = getStartTime(sheet, row);
+  var memo = sheet.getRange(MEMO_COL + row).getValue();
 
   if (startTime == null && eventCell.length > 0) {
     // チェック、開始時間がついていないのにイベントIDがある場合はカレンダー削除
@@ -34,6 +35,7 @@ AddEvent2Cal.prototype.createEvent = function (targetDay) {
         "イベント削除", 
         calTitle, 
         formatDate(targetDay) + "の予定は取り消し",
+        memo,
         0xff2600
       );
       callDiscord(eventWebhook, null, embeds);
@@ -42,7 +44,17 @@ AddEvent2Cal.prototype.createEvent = function (targetDay) {
   
   } else if (startTime != null && eventCell.length == 0) {
     // チェック、開始時間があるのにイベントIDがない場合はカレンダー登録
-    this.addCal(sheet, row, startTime, startTime);
+    var boo = this.addCal(sheet, row, startTime, startTime);
+    if (boo) {
+      var embeds = formatCalBot(
+        "イベント登録", 
+        calTitle, 
+        formatDate(startTime) + " "+ formatTime(startTime) + "開始",
+        memo,
+        0x5c5cfB
+      );
+      callDiscord(eventWebhook, null, embeds);
+    }
     return;
 
   } else if (startTime != null) {
@@ -53,6 +65,7 @@ AddEvent2Cal.prototype.createEvent = function (targetDay) {
         "イベント変更", 
         calTitle, 
         formatDate(startTime) + " "+ formatTime(startTime) + "開始",
+        memo,
         0x00f900
       );
       callDiscord(eventWebhook, null, embeds);

@@ -29,5 +29,6 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   var menu = ui.createMenu("管理");
   menu.addItem("今月の予定表を作成", "今月の予定表を作成");
+  menu.addItem("来月の予定表を作成", "来月の予定表を作成");
   menu.addToUi();
 }

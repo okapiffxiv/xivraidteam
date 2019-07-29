@@ -61,13 +61,15 @@ function callDiscord(url, text, embeds) {
   response = UrlFetchApp.fetch(url, params);
 }
 
-function formatCalBot(author, title, desc, color) {
+function formatCalBot(author, title, desc, memo, color) {
   var embeds = {
     "author" : {"name": author},
     "title": title,
     "description": desc,
     "url": "https://calendar.google.com/calendar/embed?src=" + calId
   };
+  
+  if (memo != "") embeds["fields"] = [{"name": "memo", "value": memo}];
   
   if (color != null) embeds["color"] = color;
   return [embeds];
