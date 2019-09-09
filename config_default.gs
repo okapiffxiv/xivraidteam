@@ -4,6 +4,7 @@
 //
 //// コピー元のシート名
 //var baseSheetName = "予定表（Base）";
+//var lotSheetName  = "ロット";
 //
 //
 ////// discord
@@ -20,6 +21,8 @@
 //  "<@7>",
 //  "<@8>"
 //];
+//// ロールID
+//var roleId = "<@&0>";
 //
 //// 未記入者に送るメッセージ
 //var blinkMessage = "予定表に記入してネ！";
@@ -29,5 +32,5 @@
 //// カレンダーID
 //var calId = "";
 //// webhook url
-//var bookWebhook = "";
+//var blinkWebhook = "";
 //var eventWebhook = "";

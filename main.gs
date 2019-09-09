@@ -22,7 +22,24 @@ function 今月の予定表を作成() {
 // 今日の予定を確認
 function 今日の予定を確認() {
   var targetDay = new Date();
-  var sheet = checkSchedule(targetDay);
+  var sheet = getSheet(targetDay);
+  var row = headerRows + targetDay.getDate();
+  var startTime = getStartTime(sheet, row);
+  if (startTime != null) {
+      var embeds = formatCalBot(
+        "固定活動日のお知らせ", 
+        calTitle, 
+        roleId + " " + formatDate(startTime) + " "+ formatTime(startTime) + "開始",
+        "",
+        0x5c5cfB
+      );
+      callDiscord(eventWebhook, null, embeds);
+  }
+}
+
+// ロット優先順位表を送信
+function ロット優先順位表を送信() {
+  new LotList();
 }
 
 function onOpen() {

@@ -43,5 +43,5 @@ ReportBlink.prototype.blinkPerson = function() {
 
 // discordにメッセージを送信
 ReportBlink.prototype.callDiscord = function(blinkPersons) {
-  callDiscord(bookWebhook, blinkPersons.join(' ') + " " + blinkMessage);
+  callDiscord(blinkWebhook, blinkPersons.join(' ') + " " + blinkMessage);
 }

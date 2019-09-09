@@ -11,5 +11,5 @@ var CopyScheduleSheet = function() {
 
 // discordにメッセージを送信
 CopyScheduleSheet.prototype.callDiscord = function() {
-  callDiscord(bookWebhook, copyMessage);
+  callDiscord(blinkWebhook, copyMessage);
 }
