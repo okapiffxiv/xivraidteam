@@ -50,35 +50,44 @@ LotList.prototype.Box = function () {
   // ロット対象者
   var targets = {'lots': {}, 'armers': {}}
   for (var key in lots) {
-    targets['lots'][key] = [];
+    targets['lots'][key] = [[], []];
+    var min = lots[key][0]['have'];
+    var idx = 0;
 
-    if (lots[key][0]['want'] == 0) {
-      // 希望者がすべて取得している場合は所持数が少ない人
-      var min = lots[key][0]['have'];
-      for (var idx = 0; idx < lots[key].length; idx++) {
-        if (lots[key][idx]['have'] > min) break;
-        targets['lots'][key].push(lots[key][idx]['name']);
+    // 希望者がいる場合は対象者すべて
+    if (lots[key][0]['want'] > 0) {
+      for (idx; idx < lots[key].length; idx++) {
+        if (lots[key][idx]['want'] == 0) {
+          min = lots[key][idx]['have'];
+          break;
+        }
+
+        targets['lots'][key][0].push(lots[key][idx]['name']);
       }
-
-    } else {
-      // 希望者がいる場合は対象者すべて
-      for (var idx = 0; idx < lots[key].length; idx++) {
-        if (lots[key][idx]['want'] == 0) break;
-        targets['lots'][key].push(lots[key][idx]['name']);
-      }
-
+      
+      targets['lots'][key][0] = targets['lots'][key][0].join('、');
     }
+
+    // 希望者がすべて取得している場合は所持数が少ない人
+    for (idx; idx < lots[key].length; idx++) {
+      if (lots[key][idx]['have'] > min) break;
+      targets['lots'][key][1].push(lots[key][idx]['name']);
+    }
+
+    targets['lots'][key][1] = targets['lots'][key][1].join('、');
+    if (targets['lots'][key][0].length == 0) targets['lots'][key].shift();
+    targets['lots'][key] = targets['lots'][key].join(' ＞ ');
 
   }
   
   // 武器希望
-  var cntCol = 2;
-  var armers = this.sheet.getRange(3, 4, this.cntMember, cntCol).getValues();
+  var cntCol = 3;
+  var armers = this.sheet.getRange(3, 3, this.cntMember, cntCol).getValues();
   var lots   = {}
   for (var midx = 0; midx < this.cntMember; midx++) {
     for (var col = 0; col < armers[midx].length; col++) {
-      if (armers[midx][col] == '') continue;
-      if (lots[armers[midx][col]] == undefined) lots[armers[midx][col]] = [[], []];
+      if (armers[midx][col] == '' || armers[midx][col] == '取得済') continue;
+      if (lots[armers[midx][col]] == undefined) lots[armers[midx][col]] = [[], [], []];
       lots[armers[midx][col]][col].push(members[midx][0]);
     }
   }
@@ -105,7 +114,7 @@ LotList.prototype.callDiscord = function (reports) {
   embeds[0]['url'] = this.obj.getUrl() + "#gid=" + this.sheet.getSheetId();
   embeds[0]['fields'] = [];
   for (var key in reports['lots']) {
-    embeds[0]['fields'].push({'name': key, 'value': reports['lots'][key].join('、')})
+    embeds[0]['fields'].push({'name': key, 'value': reports['lots'][key]})
   }
   callDiscord(eventWebhook, null, embeds);
 }
