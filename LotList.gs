@@ -50,32 +50,40 @@ LotList.prototype.Box = function () {
   // ロット対象者
   var targets = {'lots': {}, 'armers': {}}
   for (var key in lots) {
-    targets['lots'][key] = [[], []];
+    targets['lots'][key] = [];
     var min = lots[key][0]['have'];
     var idx = 0;
 
     // 希望者がいる場合は対象者すべて
     if (lots[key][0]['want'] > 0) {
+      targets['lots'][key][0] =　[]
       for (idx; idx < lots[key].length; idx++) {
-        if (lots[key][idx]['want'] == 0) {
-          min = lots[key][idx]['have'];
-          break;
-        }
-
+        if (lots[key][idx]['want'] == 0) break;
         targets['lots'][key][0].push(lots[key][idx]['name']);
       }
       
-      targets['lots'][key][0] = targets['lots'][key][0].join('、');
     }
 
     // 希望者がすべて取得している場合は所持数が少ない人
+    var prevHave = lots[key][idx]['have'];
+    var lidx = targets['lots'][key].length;
     for (idx; idx < lots[key].length; idx++) {
-      if (lots[key][idx]['have'] > min) break;
-      targets['lots'][key][1].push(lots[key][idx]['name']);
+      if (lots[key][idx]['have'] > prevHave) {
+        if (lidx == 1) break;
+        lidx++;
+      }
+
+      if (targets['lots'][key][lidx] == undefined) targets['lots'][key][lidx] = [];
+
+      targets['lots'][key][lidx].push(lots[key][idx]['name']);
+      prevHave = lots[key][idx]['have'];
+
     }
 
-    targets['lots'][key][1] = targets['lots'][key][1].join('、');
-    if (targets['lots'][key][0].length == 0) targets['lots'][key].shift();
+    // 整形処理
+    for (var idx = 0; idx < targets['lots'][key].length; idx++) {
+      targets['lots'][key][idx] = targets['lots'][key][idx].join('、');
+    }
     targets['lots'][key] = targets['lots'][key].join(' ＞ ');
 
   }
@@ -92,13 +100,15 @@ LotList.prototype.Box = function () {
     }
   }
   
+  var armers = {}
   for (var key in lots) {
     for (var rank=0; rank < cntCol; rank++) {
-      lots[key][rank] = (lots[key][rank].length == 0) ? 'なし': lots[key][rank].join('、');
+      if (rank == 0) armers[key] = [];
+      if (lots[key][rank].length > 0) armers[key].push(lots[key][rank].join('、'));
     }
-    lots[key] = lots[key].join(' ＞ ')
+     armers[key] = armers[key].join(' ＞ ')
   }
-  targets['armers'] = lots;
+  targets['armers'] = armers;
 
   return targets;
 }
