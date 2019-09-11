@@ -21,7 +21,8 @@
   ロールIDは `@everyone` は反応しないので１つも作っていない場合はロールを作成する  
   [カレンダーIDの調べ方](https://support.google.com/a/answer/1626902?hl=ja)  
   [DiscordのユーザIDの調べ方](https://support.discordapp.com/hc/ja/articles/206346498-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC-%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8ID%E3%81%AF%E3%81%A9%E3%81%93%E3%81%A7%E8%A6%8B%E3%81%A4%E3%81%91%E3%82%89%E3%82%8C%E3%82%8B-)  
-  [Discord ロールIDの取得方法](https://discordhelp.net/role-id)  
+  [Discord 役職の作り方](https://support.discordapp.com/hc/ja/articles/206029707-%E6%A8%A9%E9%99%90%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF-)
+  [Discord 役職IDの取得方法](https://discordhelp.net/role-id)  
   [Discord webhookの取得方法](https://support.discordapp.com/hc/ja/articles/228383668-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB-Webhooks%E3%81%B8%E3%81%AE%E5%BA%8F%E7%AB%A0)  
 ```js
 // GoogleカレンダーID
@@ -40,7 +41,7 @@ schedule.discordIds = [
   "<@ここにIDを記入>"
 ];
 
-// Discordの固定グループのロールID "<@&コピーしたID（ランダムな半角数字）>"
+// Discordの固定グループの役職ID "<@&コピーしたID（ランダムな半角数字）>"
 schedule.roleId = "<@&ここにIDを記入>";
 
 // Discord webhook url
