@@ -1,7 +1,6 @@
 # xivraidteam
-- 固定管理用スプレッドシートです　　
-- 希望品の確認、強化薬系の取得状況確認、スケジュール管理ができます  
-![Imgur](https://i.imgur.com/9kIoD9E.png)
+- 固定管理用スプレッドシートです。希望品・ロット管理、スケジュール管理ができます。  
+![Imgur](https://i.imgur.com/mzQrCJZ.png)
 ![Imgur](https://i.imgur.com/NwEkyTU.png)
 
 ### インストール
@@ -12,11 +11,11 @@
 1. 開始時刻欄を半角で記入。活動しない場合は空欄。
 
 ### Google Calendar、Discordとの連携
-- この処理を行っておくと、Discordを使って未記入者への連絡、固定活動日のお知らせを自動で行ってくれるようになります
-- Googleカレンダーに固定日を自動登録してくれるので、カレンダーURLから固定日の情報を共有することが出来ます  
+- この処理を行っておくと、Discordを使って未記入者への連絡、固定活動日のお知らせ、ロット優先表の送信を自動で行ってくれるようになります
+- Googleカレンダーに固定日を自動登録してくれるので、カレンダーを使って情報を共有することが出来ます  
 ![Imgur](https://i.imgur.com/9inwkvs.png) ![Imgur](https://i.imgur.com/frkUnmw.png)  
-![Imgur](https://i.imgur.com/NWnksCE.png) ![Imgur](https://i.imgur.com/Fvyc0BU.jpg)
-
+![Imgur](https://i.imgur.com/NWnksCE.png)  
+![Imgur](https://i.imgur.com/jtwAT4F.png)  
 
 1. 「ツール→スクリプトエディタ」をクリックし、開かれたスクリプトに必要なデータを入力  
   ロールIDは `@everyone` は反応しないので１つも作っていない場合はロールを作成する  
