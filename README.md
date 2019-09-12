@@ -18,7 +18,7 @@
 ![Imgur](https://i.imgur.com/jtwAT4F.png)  
 
 1. 「ツール→スクリプトエディタ」をクリックし、開かれたスクリプトに必要なデータを入力  
-  ロールIDは `@everyone` は反応しないので１つも作っていない場合はロールを作成する  
+  役職IDは `@everyone` は反応しないので１つも作っていない場合はロールを作成すること  
   [カレンダーIDの調べ方](https://support.google.com/a/answer/1626902?hl=ja)  
   [DiscordのユーザIDの調べ方](https://support.discordapp.com/hc/ja/articles/206346498-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC-%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8ID%E3%81%AF%E3%81%A9%E3%81%93%E3%81%A7%E8%A6%8B%E3%81%A4%E3%81%91%E3%82%89%E3%82%8C%E3%82%8B-)  
   [Discord 役職の作り方](https://support.discordapp.com/hc/ja/articles/206029707-%E6%A8%A9%E9%99%90%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF-)  
@@ -88,7 +88,7 @@ schedule.copyMessage = "来月の予定表を用意したゾ☆";
 - スマホからのスプレッドシートの入力はやり辛いです
 - Googleフォームはスマホからも入力しやすいレイアウトになっているのでこれとスプレッドシートを連携し、Googleフォームを経由してスプレッドシートに予定を入力できるようにします
 
-1. [ここ](https://docs.google.com/forms/d/1cEVXhR8c2H0Snp9QNTJjMGFskISdvXmIWm6vTPCbrmI/copy)をクリックして、自分のGoogleドライブにシートをコピー
+1. [ここ](https://docs.google.com/forms/d/1cEVXhR8c2H0Snp9QNTJjMGFskISdvXmIWm6vTPCbrmI/copy)をクリックして、自分のGoogleドライブにフォームをコピー
 1. 右上の送信ボタンとユーザー名の間にある３点マークをクリックして「スクリプトエディタ」をクリックし、開かれたスクリプトに必要なデータを入力  
 ```js
 // スケジュール管理用スプレッドシートのURL
