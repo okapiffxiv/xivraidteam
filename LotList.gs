@@ -1,3 +1,15 @@
+//// ■メモ
+//1層 「帯/耳/首/腕/指」からランダム×3
+//2層 「頭/手/足」からランダム ×2 + 硬化薬
+//3層 「頭/手/足」からランダム + 「脚」 + 繊維 + 強化薬
+//4層 「武器」+「胴」+ ランダム武器直ドロップ + マウント + ミニオン
+//
+//1層と2層の箱は重複の可能性あり。
+//1層で帯は確定ではドロップしません。
+//3層で脚は1枠確定、2つ出ることはありません。
+//
+//強化素材
+
 var LotList = function() {
   this.obj   = SpreadsheetApp.getActiveSpreadsheet();
   this.sheet = this.obj.getSheetByName(lotSheetName);
@@ -64,20 +76,22 @@ LotList.prototype.Box = function () {
       
     }
 
-    // 希望者がすべて取得している場合は所持数が少ない人
-    var prevHave = lots[key][idx]['have'];
-    var lidx = targets['lots'][key].length;
-    for (idx; idx < lots[key].length; idx++) {
-      if (lots[key][idx]['have'] > prevHave) {
-        if (lidx == 1) break;
-        lidx++;
+    // 希望者がすべて取得している場合は所持数が少ない人。第2候補まで表示する。
+    var entry = targets['lots'][key].length;
+    var maxDrop = key.search(/帯|耳|首|腕|指|頭|手|足/) != -1 ? 3 : 1;
+    if (entry == 0 || (entry > 0 && targets['lots'][key][0].length < maxDrop)) {
+      var prevHave = lots[key][idx]['have'];
+      for (idx; idx < lots[key].length; idx++) {
+        if (lots[key][idx]['have'] > prevHave) {
+          if (idx >= maxDrop) break;
+          entry++;
+        }
+
+        if (targets['lots'][key][entry] == undefined) targets['lots'][key][entry] = [];
+        targets['lots'][key][entry].push(lots[key][idx]['name']);
+        prevHave = lots[key][idx]['have'];
+        
       }
-
-      if (targets['lots'][key][lidx] == undefined) targets['lots'][key][lidx] = [];
-
-      targets['lots'][key][lidx].push(lots[key][idx]['name']);
-      prevHave = lots[key][idx]['have'];
-
     }
 
     // 整形処理
@@ -104,9 +118,11 @@ LotList.prototype.Box = function () {
   for (var key in lots) {
     for (var rank=0; rank < cntCol; rank++) {
       if (rank == 0) armers[key] = [];
-      if (lots[key][rank].length > 0) armers[key].push(lots[key][rank].join('、'));
+      if (lots[key][rank].length > 0) {
+        armers[key] = lots[key][rank].join('、');
+        break;
+      }
     }
-     armers[key] = armers[key].join(' ＞ ')
   }
   targets['armers'] = armers;
 
