@@ -42,6 +42,7 @@ schedule.discordIds = [
 ];
 
 // Discordの固定グループの役職ID "<@&コピーしたID（ランダムな半角数字）>"
+// 必要ない場合は"<@&ここにIDを記入>"を""にすること
 schedule.roleId = "<@&ここにIDを記入>";
 
 // Discord webhook url
