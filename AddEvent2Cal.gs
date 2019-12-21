@@ -10,11 +10,48 @@ var AddEvent2Cal = function() {
     calDay.setDate(calDay.getDate() + 1);
   }
 
-  // 1週間の予定をカレンダーに登録
+  // 次週の予定をカレンダーに登録
+  this.arrangeSchedule(startDay);
+
   calDay = startDay;
   for(var addDay = 0; addDay <= 6; addDay++) {
     this.createEvent(calDay);
     calDay.setDate(calDay.getDate() + 1);
+  }
+}
+
+
+// 活動日の調整
+AddEvent2Cal.prototype.arrangeSchedule = function (startDay) {
+  var sheet = getSheet(startDay);
+  var lot = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(lotSheetName);
+  var row = headerRows + startDay.getDate();
+  var maxDays   = lot.getRange(ARRANGE_CELL).getValue();
+  var possibles = lot.getRange(POSSIBLEDAYS_RANGE).getValues();
+
+  var schedules = [];
+  for (var addDay = 0; addDay <= 6; addDay++) {
+    if (!possibles[addDay][0]) {
+      sheet.getRange(CHECK_COL + (row + addDay)).uncheck();
+      continue;
+    }
+
+    sheet.getRange(CHECK_COL + (row + addDay)).check();
+
+    var startTime = getStartTime(sheet, row + addDay);
+    if (startTime == null) continue;
+
+    schedules.push({
+      'time': Number(startTime.getHours() + ('00' + startTime.getMinutes()).slice(-2)),
+      'row': row  + addDay
+    });
+  }
+
+  // 「開始時間が早い>活動日が早い」日を優先
+  schedules.sort(function(a,b) {return a.time - b.time || a.row - a.row});
+  for (var idx = 0; idx < schedules.length; idx++) {
+    if (idx <= maxDays - 1) continue;
+    sheet.getRange(CHECK_COL + schedules[idx]['row']).uncheck();
   }
 }
 
@@ -26,7 +63,7 @@ AddEvent2Cal.prototype.createEvent = function (targetDay) {
   var eventCell = sheet.getRange(CALID_COL + row).getValue();
   var startTime = getStartTime(sheet, row);
   var memo = sheet.getRange(MEMO_COL + row).getValue();
-
+  
   if (startTime == null && eventCell.length > 0) {
     // チェック、開始時間がついていないのにイベントIDがある場合はカレンダー削除
     var boo = this.delCal(sheet, row, eventCell);
@@ -78,6 +115,7 @@ AddEvent2Cal.prototype.createEvent = function (targetDay) {
 
 // カレンダーに登録
 AddEvent2Cal.prototype.addCal = function(sheet, intRow, startTime, endTime) {
+  if (calId == "") return true;
   var objCal = CalendarApp.getCalendarById(calId);
   var event = objCal.createEvent(calTitle, startTime, endTime);
   
@@ -89,6 +127,7 @@ AddEvent2Cal.prototype.addCal = function(sheet, intRow, startTime, endTime) {
 
 // カレンダー削除
 AddEvent2Cal.prototype.delCal = function(sheet, intRow, eventId) {
+  if (calId == "") return true;
   var objCal = CalendarApp.getCalendarById(calId);
   objCal.getEventById(eventId).deleteEvent();
   
@@ -100,6 +139,7 @@ AddEvent2Cal.prototype.delCal = function(sheet, intRow, eventId) {
 
 // カレンダー編集
 AddEvent2Cal.prototype.editCal = function(sheet, intRow, startTime, endTime, eventId) {
+  if (calId == "") return true;
   var objCal = CalendarApp.getCalendarById(calId);
   var objEvent = objCal.getEventById(eventId);
   var calStartTime = objEvent.getStartTime();

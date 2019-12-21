@@ -1,6 +1,10 @@
 //var headerRows = 3;
 //var CALID_COL = "Q";
 //var MEMO_COL  = "M";
+//var CHECK_COL = "C";
+//
+//var POSSIBLEDAYS_RANGE = "C14:C20";
+//var ARRANGE_CELL = "C12";
 //
 //// コピー元のシート名
 //var baseSheetName = "予定表（Base）";

@@ -1,5 +1,5 @@
-// Googleカレンダーにイベントを登録
-function カレンダーにイベントを登録() {
+// 活動日の調整
+function 活動日の調整() {
   new AddEvent2Cal();
 }
 
@@ -44,24 +44,24 @@ function ロット優先順位表を送信() {
 
 // トリガー設定
 function setTrigger() {
-  deleteTrigger();
+  clearTrigger();
 
   ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.FRIDAY).atHour(22).create();
   ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.SATURDAY).atHour(22).create();
   ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.SUNDAY).atHour(22).create();
   ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.MONDAY).atHour(12).create();
 
-  ScriptApp.newTrigger("カレンダーにイベントを登録").timeBased().everyMinutes(5).create();
+  ScriptApp.newTrigger("活動日の調整").timeBased().everyMinutes(5).create();
   ScriptApp.newTrigger("今日の予定を確認").timeBased().everyDays(1).atHour(12).create();
   ScriptApp.newTrigger("ロット優先順位表を送信").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.TUESDAY).atHour(17).create();
   ScriptApp.newTrigger("来月の予定表を作成").timeBased().onMonthDay(20).atHour(22).create();
 }
 
 // トリガーの全削除
-function deleteTrigger() {
+function clearTrigger() {
   var triggers = ScriptApp.getProjectTriggers();
   for(var i=0; i < triggers.length; i++) {
-    ScriptApp.deleteTrigger(triggers[i]);
+    ScriptApp.clearTrigger(triggers[i]);
   }
 }
 
@@ -73,6 +73,6 @@ function onOpen() {
   menu.addItem("ロット優先順位表を送信", "ロット優先順位表を送信");
   menu.addSeparator()
   menu.addItem("デフォルトのトリガーを設定", "setTrigger");
-  menu.addItem("全トリガーを削除", "deleteTrigger");
+  menu.addItem("全トリガーを削除", "clearTrigger");
   menu.addToUi();
 }

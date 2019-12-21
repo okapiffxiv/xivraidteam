@@ -51,6 +51,7 @@ function copySheet(name) {
 
 // discord
 function callDiscord(url, text, embeds) {
+  if (url == '') return true;
   var payload = {"content": text, "embeds": embeds};  
   var params = {
     "method" : "post",
@@ -80,7 +81,7 @@ function getStartTime(sheet, intRow) {
   var booCheck, timeCell, startTime, selTime, endTime
   
   // チェックがついてない
-  booCheck = sheet.getRange('C' + intRow).getValue();
+  booCheck = sheet.getRange(CHECK_COL + intRow).getValue();
   if (!booCheck) return null;
   
   // 開始時間セルが空
