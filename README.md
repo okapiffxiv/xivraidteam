@@ -17,46 +17,50 @@
 ![Imgur](https://i.imgur.com/NWnksCE.png)  
 ![Imgur](https://i.imgur.com/jtwAT4F.png)  
 
+1. DiscordでWebhookを作成  
+[Discord webhookの取得方法](https://support.discordapp.com/hc/ja/articles/228383668-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB-Webhooks%E3%81%B8%E3%81%AE%E5%BA%8F%E7%AB%A0)を参考にWebhookを作成します。  
+「予定日連絡用」と「未記入者連絡用」と２つ作成します。その時にできたURLは控えておくこと。
+1. [Googleカレンダーを作成](https://life89.jp/create-google-calendar-and-get-id/)し、カレンダーIDを控えておく。
 1. 「ツール→スクリプトエディタ」をクリックし、開かれたスクリプトに必要なデータを入力  
   役職IDは `@everyone` は反応しないので１つも作っていない場合はロールを作成すること  
-  [カレンダーIDの調べ方](https://support.google.com/a/answer/1626902?hl=ja)  
   [DiscordのユーザIDの調べ方](https://support.discordapp.com/hc/ja/articles/206346498-%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC-%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8ID%E3%81%AF%E3%81%A9%E3%81%93%E3%81%A7%E8%A6%8B%E3%81%A4%E3%81%91%E3%82%89%E3%82%8C%E3%82%8B-)  
   [Discord 役職の作り方](https://support.discordapp.com/hc/ja/articles/206029707-%E6%A8%A9%E9%99%90%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF-)  
-  [Discord 役職IDの取得方法](https://discordhelp.net/role-id)  
-  [Discord webhookの取得方法](https://support.discordapp.com/hc/ja/articles/228383668-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB-Webhooks%E3%81%B8%E3%81%AE%E5%BA%8F%E7%AB%A0)  
-```js
-// GoogleカレンダーID
-schedule.calId = "????@gmail.com";
+  [Discord 役職IDの取得方法](https://discordhelp.net/role-id)   
 
-// DiscordのユーザID "<@コピーしたID（ランダムな半角数字）>"
-// 予定表左の人から順番に入れる
-schedule.discordIds = [
-  "<@ここにIDを記入>",
-  "<@ここにIDを記入>",
-  "<@ここにIDを記入>", 
-  "<@ここにIDを記入>",
-  "<@ここにIDを記入>",
-  "<@ここにIDを記入>",
-  "<@ここにIDを記入>",
-  "<@ここにIDを記入>"
-];
+    ```js
+    // GoogleカレンダーID
+    schedule.calId = "????@gmail.com";
 
-// Discordの固定グループの役職ID "<@&コピーしたID（ランダムな半角数字）>"
-// グループへのメンションが必要ない場合は"<@&ここにIDを記入>"を""にすること
-schedule.roleId = "<@&ここにIDを記入>";
+    // DiscordのユーザID "<@コピーしたID（ランダムな半角数字）>"
+    // 予定表左の人から順番に入れる
+    schedule.discordIds = [
+      "<@ここにIDを記入>",
+      "<@ここにIDを記入>",
+      "<@ここにIDを記入>", 
+      "<@ここにIDを記入>",
+      "<@ここにIDを記入>",
+      "<@ここにIDを記入>",
+      "<@ここにIDを記入>",
+      "<@ここにIDを記入>"
+    ];
 
-// Discord webhook url
-// カレンダーイベント用
-schedule.eventWebhook = "ここにURLを記入";
-// 来月の予定表を作成時や予定未記入者への連絡用
-schedule.blinkWebhook = "ここにURLを記入";
+    // Discordの固定グループの役職ID "<@&コピーしたID（ランダムな半角数字）>"
+    // グループへのメンションが必要ない場合は"<@&ここにIDを記入>"を""にすること
+    schedule.roleId = "<@&ここにIDを記入>";
 
-// Discordに送るメッセージ
-// 予定表未記入者連絡用
-schedule.blinkMessage = "予定表に記入してネ！";
-// 来月の予定表を作成時連絡用
-schedule.copyMessage = "来月の予定表を用意したゾ☆";
-```
+    // Discord webhook url
+    // カレンダーイベント用
+    schedule.eventWebhook = "ここにURLを記入";
+    // 来月の予定表を作成時や予定未記入者への連絡用
+    schedule.blinkWebhook = "ここにURLを記入";
+
+    // Discordに送るメッセージ
+    // 予定表未記入者連絡用
+    schedule.blinkMessage = "予定表に記入してネ！";
+    // 来月の予定表を作成時連絡用
+    schedule.copyMessage = "来月の予定表を用意したゾ☆";
+    ```
+
 1. スプレッドシート画面に戻り、「管理→デフォルトのトリガーを設定」をクリック
 1. カレンダーシートの日付チェックボックスに☑が入っている日付を活動日候補と判断し、活動日を自動でお知らせしてくれるようになります
 
