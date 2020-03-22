@@ -5,6 +5,7 @@
 //
 //var POSSIBLEDAYS_RANGE = "C14:C20";
 //var ARRANGE_CELL = "C12";
+//var PRIORITY_CELL = "E12";
 //
 //// コピー元のシート名
 //var baseSheetName = "予定表（Base）";

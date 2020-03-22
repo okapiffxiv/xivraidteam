@@ -19,7 +19,7 @@ function getSheet(targetDay) {
   // シート名
   var mon = "0" + (targetDay.getMonth() + 1);
   mon = mon.slice(-2);
-  var sheetName = "" + targetDay.getYear() + mon;
+  var sheetName = "" + targetDay.getFullYear() + mon;
 
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
   
@@ -30,7 +30,7 @@ function getSheet(targetDay) {
     copyS.setName("" + sheetName);
     
     // 年月を記入
-    copyS.getRange("E2").setValue(targetDay.getYear());
+    copyS.getRange("E2").setValue(targetDay.getFullYear());
     copyS.getRange("G2").setValue(targetDay.getMonth() + 1);
 
     copyS.showSheet();
@@ -94,12 +94,12 @@ function getStartTime(sheet, intRow) {
   startTime.setHours(selTime.getHours());
   startTime.setMinutes(selTime.getMinutes());
   
-  return startTime 
+  return startTime;
 }
 
 
 function formatDate(d) {
-  return Utilities.formatDate( d, "Asia/Tokyo", "yyyy年M月d日");
+  return Utilities.formatDate( d, "Asia/Tokyo", "yyyy年M月d日(E)");
 }
 
 function formatTime(d) {
