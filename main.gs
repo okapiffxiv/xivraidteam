@@ -29,7 +29,7 @@ function 今日の予定を確認() {
       var embeds = formatCalBot(
         "固定活動日のお知らせ", 
         calTitle, 
-        roleId + " " + formatDate(startTime) + " "+ formatTime(startTime) + "開始",
+        formatDate(startTime) + " "+ formatTime(startTime) + "開始",
         "",
         0x5c5cfB
       );
@@ -46,22 +46,32 @@ function ロット優先順位表を送信() {
 function setTrigger() {
   clearTrigger();
 
-  ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.FRIDAY).atHour(22).create();
-  ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.SATURDAY).atHour(22).create();
-  ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.SUNDAY).atHour(22).create();
-  ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.MONDAY).atHour(12).create();
+  if (isReportBlink) {
+    ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.FRIDAY).atHour(22).create();
+    ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.SATURDAY).atHour(22).create();
+    ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.SUNDAY).atHour(22).create();
+    ScriptApp.newTrigger("未入力者にDiscordで連絡").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.MONDAY).atHour(12).create();
+  }
 
-  ScriptApp.newTrigger("活動日の調整").timeBased().everyMinutes(5).create();
-  ScriptApp.newTrigger("今日の予定を確認").timeBased().everyDays(1).atHour(12).create();
-  ScriptApp.newTrigger("ロット優先順位表を送信").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.TUESDAY).atHour(17).create();
-  ScriptApp.newTrigger("来月の予定表を作成").timeBased().onMonthDay(20).atHour(22).create();
+  if (isReportSchedule) {
+    ScriptApp.newTrigger("活動日の調整").timeBased().everyMinutes(5).create();
+    ScriptApp.newTrigger("今日の予定を確認").timeBased().everyDays(1).atHour(12).create();
+  }
+  
+  if (isReportLot) {
+    ScriptApp.newTrigger("ロット優先順位表を送信").timeBased().everyWeeks(1).onWeekDay(ScriptApp.WeekDay.TUESDAY).atHour(17).create();
+  }
+  
+  if (isReportCreateCalendar) {
+    ScriptApp.newTrigger("来月の予定表を作成").timeBased().onMonthDay(20).atHour(22).create();
+  }
 }
 
 // トリガーの全削除
 function clearTrigger() {
   var triggers = ScriptApp.getProjectTriggers();
   for(var i=0; i < triggers.length; i++) {
-    ScriptApp.clearTrigger(triggers[i]);
+    ScriptApp.deleteTrigger(triggers[i]);
   }
 }
 
