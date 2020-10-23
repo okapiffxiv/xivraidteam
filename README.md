@@ -11,7 +11,7 @@
 1. 開始時刻欄を半角で記入。活動しない場合は空欄。
 
 ### Google Calendar、Discordとの連携
-- この処理を行っておくと、Discordを使って未記入者への連絡、固定活動日のお知らせ、ロット優先表の送信を自動で行ってくれるようになります
+- この処理を行っておくと、活動日の調整・お知らせ、Discordを使って未記入者への連絡、ロット優先表の送信を自動で行ってくれるようになります
 - Googleカレンダーに固定日を自動登録してくれるので、カレンダーを使って情報を共有することが出来ます  
 ![Imgur](https://i.imgur.com/9inwkvs.png) ![Imgur](https://i.imgur.com/frkUnmw.png)  
 ![Imgur](https://i.imgur.com/NWnksCE.png)  
